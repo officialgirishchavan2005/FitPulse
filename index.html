@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FitPulse – Fitness Trainer & Gym Landing Page</title>
+  <meta name="description" content="Modern, responsive landing page for gyms and personal trainers. Lead-focused with WhatsApp CTA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f14;          /* near-black */
+      --card:#121822;        /* dark card */
+      --muted:#9aa4b2;       /* gray text */
+      --brand:#5eead4;       /* teal */
+      --brand-2:#60a5fa;     /* blue */
+      --accent:#f59e0b;      /* amber */
+      --white:#ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--white); background:linear-gradient(180deg, #0b0f14 0%, #0c1219 60%, #0b0f14 100%);
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* Layout */
+    .container{width:min(1120px, 92%); margin-inline:auto}
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px); background:rgba(11,15,20,.6); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px}
+    .brand-logo{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); display:grid; place-items:center; box-shadow:var(--shadow)}
+    .brand-logo svg{filter:drop-shadow(0 6px 12px rgba(94,234,212,.45))}
+    nav ul{display:flex; gap:18px; list-style:none; padding:0; margin:0}
+    nav a{padding:10px 12px; border-radius:12px; color:var(--muted)}
+    nav a:hover{background:rgba(255,255,255,.06); color:var(--white)}
+    .cta{display:inline-grid; place-items:center; padding:10px 16px; border-radius:14px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#0b1020; font-weight:700; box-shadow:0 8px 18px rgba(96,165,250,.35)}
+    .cta:hover{transform:translateY(-1px)}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:34px; align-items:center; padding:56px 0 24px}
+    .badge{display:inline-flex; align-items:center; gap:8px; color:#0b1020; background:linear-gradient(135deg,var(--brand),var(--brand-2)); padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px}
+    .hero h1{font-size:clamp(32px, 6vw, 56px); line-height:1.04; margin:14px 0}
+    .lead{color:var(--muted); font-size:18px}
+    .hero .actions{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap}
+    .ghost{border:1px solid rgba(255,255,255,.12); padding:10px 16px; border-radius:14px}
+
+    .hero-card{background:radial-gradient(1200px 400px at 110% -10%, rgba(96,165,250,.15), transparent 50%), var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px}
+    .stat{background:#0e1520; border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:14px}
+    .stat strong{font-size:22px}
+
+    /* Sections */
+    section{padding:52px 0}
+    .section-title{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px}
+    .section-title h2{margin:0; font-size:28px}
+    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .card h3{margin:6px 0 6px}
+    .muted{color:var(--muted)}
+
+    /* Pricing */
+    .pricing{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .price-card{position:relative}
+    .price{font-size:34px; font-weight:800}
+    .chip{position:absolute; top:14px; right:14px; background:linear-gradient(135deg, var(--accent), #f97316); color:#0a0a0a; padding:6px 10px; border-radius:999px; font-weight:800; font-size:12px}
+    .features{display:grid; gap:8px; margin:12px 0}
+    .features li{list-style:none; display:flex; align-items:center; gap:10px}
+    .features svg{flex:0 0 18px}
+
+    /* Schedule */
+    .schedule{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .slot{display:flex; align-items:center; justify-content:space-between; background:#0e1520; border:1px solid rgba(255,255,255,.06); border-radius:12px; padding:10px 12px; margin-top:10px}
+
+    /* CTA banner */
+    .cta-banner{background:radial-gradient(1000px 300px at -10% -30%, rgba(94,234,212,.18), transparent 50%), var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:24px; display:grid; grid-template-columns:1.2fr .8fr; gap:14px; align-items:center}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.06); padding:26px 0; color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr; padding-top:32px}
+      .cards, .pricing, .schedule{grid-template-columns:1fr 1fr}
+      .cta-banner{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      nav ul{display:none}
+      .cards, .pricing, .schedule{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr 1fr}
+    }
+
+    /* Floating WhatsApp button */
+    .whatsapp-float{position:fixed; right:18px; bottom:18px; background:#25D366; color:#0b0f14; padding:12px 14px; border-radius:999px; font-weight:800; box-shadow:0 12px 24px rgba(37,211,102,.35); display:flex; align-items:center; gap:10px; z-index:60}
+    .whatsapp-float:hover{transform:translateY(-1px)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <span class="brand-logo" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 12c0-4.418 3.582-8 8-8 3.314 0 6.167 2.015 7.348 4.882l-3.696 1.54A4.999 4.999 0 0 0 12 8c-2.21 0-4 1.79-4 4h-4Z" fill="#06131a"/>
+            <path d="M20 12c0 4.418-3.582 8-8 8-3.314 0-6.167-2.015-7.348-4.882l3.696-1.54A5 5 0 0 0 12 16c2.21 0 4-1.79 4-4h4Z" fill="#fff"/>
+          </svg>
+        </span>
+        FitPulse
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="cta" href="#pricing" aria-label="View pricing">Start 7‑Day Free Trial</a>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <span class="badge">NEW • 7‑Day Free Trial</span>
+        <h1>Stronger body. Sharper mind.<br/>Get fit with <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">FitPulse</span>.</h1>
+        <p class="lead">Personalized coaching, group classes and progressive programs. Train anywhere — studio or home. Results, not excuses.</p>
+        <div class="actions">
+          <a class="cta" href="#pricing">View Plans</a>
+          <a class="ghost" href="#programs">Explore Programs</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="muted">Clients trained</div><strong>250+</strong></div>
+          <div class="stat"><div class="muted">Avg transformation</div><strong>8 weeks</strong></div>
+          <div class="stat"><div class="muted">5★ reviews</div><strong>120+</strong></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop" alt="Athlete training with kettlebell" style="border-radius:14px; border:1px solid rgba(255,255,255,.06)">
+      </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section id="programs">
+      <div class="section-title">
+        <h2>Programs that actually work</h2>
+        <a class="ghost" href="#contact">Need a custom plan?</a>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Strength & Conditioning</h3>
+          <p class="muted">Progressive overload, compound lifts and accessory work to build strength you can feel.</p>
+        </article>
+        <article class="card">
+          <h3>Fat Loss Accelerator</h3>
+          <p class="muted">Metabolic circuits + nutrition guidance to cut fat while preserving lean muscle.</p>
+        </article>
+        <article class="card">
+          <h3>Mobility & Core</h3>
+          <p class="muted">Bulletproof your joints and improve posture with focused mobility flows.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section id="schedule">
+      <div class="section-title">
+        <h2>Class Schedule Highlights</h2>
+        <span class="muted">Drop-in and monthly passes available</span>
+      </div>
+      <div class="schedule">
+        <div class="card">
+          <h3>Morning Hustle</h3>
+          <p class="muted">Get it done before the day starts.</p>
+          <div class="slot"><span>Mon • Wed • Fri</span><strong>6:30–7:30 AM</strong></div>
+          <div class="slot"><span>Tue • Thu</span><strong>7:00–8:00 AM</strong></div>
+        </div>
+        <div class="card">
+          <h3>Lunchtime Burn</h3>
+          <p class="muted">Quick 45-minute sweat session.</p>
+          <div class="slot"><span>Mon–Fri</span><strong>1:00–1:45 PM</strong></div>
+          <div class="slot"><span>Sat</span><strong>12:00–12:45 PM</strong></div>
+        </div>
+        <div class="card">
+          <h3>Evening Strength</h3>
+          <p class="muted">PRs and pump after work.</p>
+          <div class="slot"><span>Mon • Wed</span><strong>6:30–7:30 PM</strong></div>
+          <div class="slot"><span>Sat</span><strong>5:00–6:00 PM</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <div class="section-title">
+        <h2>Simple, transparent pricing</h2>
+        <span class="muted">Cancel anytime • 7‑day money‑back</span>
+      </div>
+      <div class="pricing">
+        <article class="card price-card">
+          <div class="chip">Starter</div>
+          <h3>Monthly Pass</h3>
+          <div class="price">₹1,499</div>
+          <ul class="features">
+            <li>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+              Unlimited classes (group)
+            </li>
+            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Nutrition basics pdf</li>
+            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> WhatsApp support</li>
+          </ul>
+          <a class="cta" href="#contact">Start now</a>
+        </article>
+        <article class="card price-card" style="transform:scale(1.02); outline:2px solid rgba(94,234,212,.35)">
+          <div class="chip">Most Popular</div>
+          <h3>Personal Coaching</h3>
+          <div class="price">₹3,999</div>
+          <ul class="features">
+            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 3× 1‑on‑1 sessions / week</li>
+            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Custom plan + form checks</li>
+            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Weekly progress review</li>
+          </ul>
+          <a class="cta" href="#contact">Choose coaching</a>
+        </article>
+        <article class="card price-card">
+          <div class="chip">Pro</div>
+          <h3>Transformation Pack</h3>
+          <div class="price">₹7,999</div>
+          <ul class="features">
+            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 8‑week intensive plan</li>
+            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 1‑on‑1 + group mix</li>
+            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Diet plan + habit coaching</li>
+          </ul>
+          <a class="cta" href="#contact">Go Pro</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section>
+      <div class="cta-banner">
+        <div>
+          <h2>Ready to start? Book a free intro session.</h2>
+          <p class="muted">Ask questions, see the studio and get your personalized plan. No pressure.</p>
+          <div class="actions">
+            <a class="cta" href="#contact">Book Free Intro</a>
+            <a class="ghost" href="https://wa.me/919999999999?text=Hi%20FitPulse!%20I%20want%20to%20start." target="_blank" rel="noreferrer">Chat on WhatsApp</a>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop" alt="Gym studio" style="border-radius:14px; border:1px solid rgba(255,255,255,.06)">
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <span class="muted">We reply within 2 hours</span>
+      </div>
+      <div class="card" style="display:grid; grid-template-columns:1fr 1fr; gap:18px">
+        <form id="contactForm" class="card" style="background:#0e1520">
+          <label>Name<br><input name="name" required placeholder="Your name" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0c1219; color:#fff"></label>
+          <div style="height:12px"></div>
+          <label>Phone / WhatsApp<br><input name="phone" required placeholder="Your number" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0c1219; color:#fff"></label>
+          <div style="height:12px"></div>
+          <label>Goal<br>
+            <select name="goal" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0c1219; color:#fff">
+              <option>Fat loss</option>
+              <option>Muscle gain</option>
+              <option>Mobility / Rehab</option>
+              <option>General fitness</option>
+            </select>
+          </label>
+          <div style="height:16px"></div>
+          <button class="cta" type="submit">Request a Call</button>
+        </form>
+        <div class="card" style="background:#0e1520">
+          <h3>Visit the Studio</h3>
+          <p class="muted">FitPulse Studio, Nashik</p>
+          <div style="height:8px"></div>
+          <p class="muted">Hours: Mon–Sat • 6:30 AM – 9:00 PM</p>
+          <div style="height:12px"></div>
+          <a class="ghost" href="https://maps.google.com" target="_blank" rel="noreferrer">Open in Google Maps</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
+      <div class="muted">© <span id="year"></span> FitPulse. All rights reserved.</div>
+      <div class="muted">Built by Girish Chavan</div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp (replace with your number) -->
+  <a class="whatsapp-float" href="https://wa.me/919999999999?text=Hi%20FitPulse!%20I%20want%20to%20start." target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
+    <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.53c-.27-.13-1.58-.78-1.82-.86-.24-.09-.41-.13-.59.13-.18.27-.68.86-.83 1.04-.15.18-.31.2-.59.07-.27-.13-1.13-.41-2.15-1.31-.79-.7-1.32-1.56-1.47-1.83-.15-.27-.02-.42.11-.55.12-.12.27-.31.41-.47.14-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.13-.59-1.42-.81-1.95-.21-.5-.43-.43-.59-.44h-.5c-.18 0-.47.07-.72.34-.24.27-.95.92-.95 2.25s.97 2.61 1.11 2.79c.13.18 1.9 2.89 4.61 4.05.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.58-.65 1.8-1.27.22-.63.22-1.17.15-1.27-.07-.11-.25-.17-.52-.3z"/></svg>
+    WhatsApp
+  </a>
+
+  <script>
+    // dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // basic form handler -> opens WhatsApp with prefilled message
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = encodeURIComponent(form.name.value.trim());
+      const phone = encodeURIComponent(form.phone.value.trim());
+      const goal = encodeURIComponent(form.goal.value);
+      // REPLACE 919999999999 with the business number (include country code)
+      const url = `https://wa.me/919999999999?text=Hi%20FitPulse!%20I%20am%20${name}%20(${phone}).%20My%20goal:%20${goal}.`;
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+</html>
